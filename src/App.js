@@ -1,8 +1,11 @@
+import Login from "./views/login";
+
+
 
 function App() {
   return (
     <div className="App">
-     我是应用
+      <Login />
     </div>
   );
 }
