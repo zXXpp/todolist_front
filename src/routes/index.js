@@ -1,9 +1,8 @@
 import { Navigate } from 'react-router-dom'
 
-import Login from "../views/login/Index"
-import Register from '../views/register/Index'
-import Test from '../views/register/test/Test'
-import Test2 from '../views/register/test2/Test2'
+import Login from "../views/Login"
+import Register from '../views/Register'
+import Mytodolist from '../views/Mytodolist'
 
 
 
@@ -11,24 +10,19 @@ import Test2 from '../views/register/test2/Test2'
 export default [
     {
         path: '/',
-        element: <Navigate to="/login" />
+        element: <Navigate to="/mytodolist" />
     },
+    //登录相关的
     {
         path: '/login',
         element: <Login />
     },
     {
         path: '/register',
-        element: <Register />,
-        children: [
-            {
-                path: 'test',
-                element: <Test />
-            },
-            {
-                path: 'test2',
-                element: <Test2 />
-            },
-        ]
+        element: <Register />
+    },
+    {
+        path: '/mytodolist',
+        element: <Mytodolist />
     }
 ]
