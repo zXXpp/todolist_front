@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 
 import { Layout, Space, Button, Checkbox, Form, Input, message } from 'antd';
 
@@ -10,6 +10,7 @@ const { Header, Footer, Sider, Content } = Layout
 
 
 export default function Index() {
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
   const onFinish = async (values) => {
@@ -20,7 +21,9 @@ export default function Index() {
         email, nickName, password
       })
       if (code === '0000') {
-        console.log('成功');
+        navigate('/login', {
+          replace: true
+        })
         message.success('注册成功')
       }
     } catch (error) {
