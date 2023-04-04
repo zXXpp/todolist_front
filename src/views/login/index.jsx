@@ -6,7 +6,6 @@ import { Layout, Space, Button, Checkbox, Form, Input } from 'antd';
 import moduleCss from './index.module.scss'
 
 import { login } from '../../request/index'
-import { async } from 'q';
 
 const { Header, Footer, Sider, Content } = Layout
 
