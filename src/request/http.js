@@ -35,8 +35,8 @@ service.interceptors.response.use(
     response => {
         if (response.status === 200) {
             //唯一的成功标识符
-            if (response.data.code == '0000') {
-                return Promise.resolve(response.data.data)
+            if (response.data.code === '0000') {
+                return Promise.resolve(response.data)
             }
             //失败的操作
             switch (response.data.code) {

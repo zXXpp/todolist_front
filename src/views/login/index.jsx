@@ -1,16 +1,27 @@
 import React, { useState, Fragment } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 import { Layout, Space, Button, Checkbox, Form, Input } from 'antd';
 
 import moduleCss from './index.module.scss'
 
+import { login } from '../../request/index'
+import { async } from 'q';
+
 const { Header, Footer, Sider, Content } = Layout
 
 
+
 export default function Index() {
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const navigate = useNavigate()
+    const onFinish = async (values) => {
+        try {
+            const { name, password } = values
+            const { data, code } = await login({ id: name, password: password })
+
+        } catch (error) {
+            console.log(error);
+        }
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -22,7 +33,7 @@ export default function Index() {
                 <Form
                     name="basic"
                     labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}
+                    wrapperCol={{ span: 10 }}
                     style={{ maxWidth: 600 }}
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
@@ -45,11 +56,14 @@ export default function Index() {
                         <Input.Password />
                     </Form.Item>
 
-                    <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-                        <Checkbox>记住密码</Checkbox>
+                    <Form.Item wrapperCol={{ offset: 8, span: 10 }}>
+                        <div className='extend'>
+                            <span onClick={() => navigate('/register')}>注册用户</span>
+                            {/* <span onClick={navigator('/')}>忘记密码？</span> */}
+                        </div>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                    <Form.Item wrapperCol={{ offset: 8, span: 10 }}>
                         <Button type="primary" htmlType="submit">
                             登录
                         </Button>
