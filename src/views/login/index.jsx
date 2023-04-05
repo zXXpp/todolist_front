@@ -16,8 +16,8 @@ export default function Index() {
     const onFinish = async (values) => {
         try {
             const { name, password } = values
-            const { data, code } = await login({ id: name, password: password })
-
+            const { data, code } = await login({ email: name, password: password })
+            
         } catch (error) {
             console.log(error);
         }
@@ -40,9 +40,9 @@ export default function Index() {
                     autoComplete="off"
                 >
                     <Form.Item
-                        label="用户名"
+                        label="邮箱"
                         name="username"
-                        rules={[{ required: true, message: 'Please input your username!' }]}
+                        rules={[{ required: true, type: 'email', message: '请输入你的邮箱' }]}
                     >
                         <Input />
                     </Form.Item>
@@ -50,7 +50,7 @@ export default function Index() {
                     <Form.Item
                         label="密码"
                         name="password"
-                        rules={[{ required: true, message: 'Please input your password!' }]}
+                        rules={[{ required: true, message: '请输入密码' }]}
                     >
                         <Input.Password />
                     </Form.Item>

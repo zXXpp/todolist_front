@@ -53,14 +53,14 @@ export default function Index() {
           <Form.Item
             label="邮箱"
             name="email"
-            rules={[{ required: true, message: '请输入邮箱！' }]}
+            rules={[{ required: true, type: 'email', message: '请输入邮箱！' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             label="昵称"
             name="nickName"
-            rules={[{ required: true, message: '请输入昵称！' }]}
+            rules={[{ required: true, min: 1, max: 15, message: '昵称长度在1-15个字符' }]}
           >
             <Input />
           </Form.Item>
@@ -68,14 +68,26 @@ export default function Index() {
           <Form.Item
             label="密码"
             name="password"
-            rules={[{ required: true, message: '请输入密码！' }]}
+            rules={[{ required: true, min: 6, max: 20, message: '密码长度在6-20个字符' }]}
           >
             <Input.Password />
           </Form.Item>
+          {/* Rule 支持接收 object 进行配置，也支持 function 来动态获取 form 的数据 */}
           <Form.Item
             label="确认密码"
             name="password1"
-            rules={[{ required: true, message: '密码不相同！' }]}
+            rules={[
+              { required: true, min: 6, max: 20, message: '密码长度在6-20个字符' },
+              // function类型的验证
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('请确认输入密码相同！'));
+                },
+              })
+            ]}
           >
             <Input.Password />
           </Form.Item>
