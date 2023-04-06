@@ -1,6 +1,7 @@
 import axios from "axios";
 //警告器
-import { message } from 'antd'
+import { message } from 'antd';
+
 
 
 const baseURL = window.config.baseUrl
@@ -16,7 +17,7 @@ const service = axios.create({
 service.interceptors.request.use(
     config => {
         //token相关
-        const token = window.localStorage.getItem('userToken') || window.sessionStorage.getItem('userToken');
+        const token = window.localStorage.getItem('token') || window.sessionStorage.getItem('token');
         if (config.method === 'get') {
             config.params = config.data
         }
@@ -42,9 +43,7 @@ service.interceptors.response.use(
             switch (response.data.code) {
                 case "401":
                     console.log('未登录')
-                    break
-                case "403":
-                    console.log('登录过期')
+                    // window.location='/login'
                     break
                 default:
                     message.open({
@@ -52,7 +51,7 @@ service.interceptors.response.use(
                         content: response.data.msg,
                     })
             }
-            return Promise.rej(response)
+            return Promise.reject(response)
         } else {
             showError(response.data.msg)
             return Promise.reject(response)

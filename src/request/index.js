@@ -22,3 +22,13 @@ export function login(data = {}, utils = {}){
         ...utils,
     })
 }
+
+
+export function test(data = {}, utils = {}){
+    return http({
+        url: '/test',
+        method: 'get',
+        data,
+        ...utils,
+    })
+}

@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Layout, Space, Button, Checkbox, Form, Input } from 'antd';
 
@@ -12,14 +12,21 @@ const { Header, Footer, Sider, Content } = Layout
 
 
 export default function Index() {
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const onFinish = async (values) => {
         try {
+            setLoading(true)
             const { email, password } = values
             const { data, code } = await login({ email, password })
-
+            if (code === '0000') {
+                localStorage.setItem('token', data.token)
+                navigate('/mytodolist', { replace: true })
+            }
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false)
         }
     };
     const onFinishFailed = (errorInfo) => {
@@ -63,7 +70,7 @@ export default function Index() {
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ offset: 8, span: 10 }}>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" loading={loading}>
                             登录
                         </Button>
                     </Form.Item>

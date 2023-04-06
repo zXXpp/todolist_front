@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navigate } from 'react-router'
 
-export default function index() {
-  return (
-    <div>我是主页
 
-      <Navigate to="/login" />
+import { test } from '../../request'
+export default function index() {
+  test()
+  return (
+    <div>
+      我是主页
     </div>
   )
 }
