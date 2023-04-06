@@ -15,9 +15,9 @@ export default function Index() {
     const navigate = useNavigate()
     const onFinish = async (values) => {
         try {
-            const { name, password } = values
-            const { data, code } = await login({ email: name, password: password })
-            
+            const { email, password } = values
+            const { data, code } = await login({ email, password })
+
         } catch (error) {
             console.log(error);
         }
@@ -40,8 +40,8 @@ export default function Index() {
                     autoComplete="off"
                 >
                     <Form.Item
-                        label="邮箱"
-                        name="username"
+                        label="email"
+                        name="email"
                         rules={[{ required: true, type: 'email', message: '请输入你的邮箱' }]}
                     >
                         <Input />

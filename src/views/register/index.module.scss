@@ -22,14 +22,10 @@
             }
 
             .extend {
-                display: flex;
-                justify-content: space-between;
-
-                span {
-                    color: rgb(67, 67, 187);
-                    cursor: pointer;
-                    text-decoration: underline;
-                }
+                margin-left: 120px;
+                color: rgb(67, 67, 187);
+                cursor: pointer;
+                text-decoration: underline;
             }
         }
     }

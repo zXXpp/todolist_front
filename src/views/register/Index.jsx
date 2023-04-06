@@ -96,6 +96,8 @@ export default function Index() {
             <Button type="primary" htmlType="submit" loading={loading}>
               注册
             </Button>
+            <span className='extend' onClick={() => navigate('/login', { replace: true })}>返回登陆
+            </span>
           </Form.Item>
         </Form>
       </div>
