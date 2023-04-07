@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom'
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
+import 'antd/dist/reset.css';
 
 
 
