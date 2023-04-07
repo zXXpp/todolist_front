@@ -1,0 +1,15 @@
+.header {
+    height: 60px;
+    background-color:pink;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    :global {
+        div{
+            margin: 0 24px;
+        }
+        .left{
+            font-size: 30px;
+        }
+    }
+}

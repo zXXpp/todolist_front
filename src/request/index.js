@@ -1,4 +1,12 @@
 import http from './http'
+export function test(data = {}, utils = {}) {
+    return http({
+        url: '/test',
+        method: 'get',
+        data,
+        ...utils,
+    })
+}
 /**
  * 注册接口
  * @param {*} data 
@@ -36,9 +44,9 @@ export function login(data = {}, utils = {}) {
  * @param {*} utils 
  * @returns 
  */
-export function test(data = {}, utils = {}) {
+export function getUserInfo(data = {}, utils = {}) {
     return http({
-        url: '/test',
+        url: '/info/getUserInfo',
         method: 'get',
         data,
         ...utils,

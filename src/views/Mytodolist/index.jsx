@@ -1,13 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router'
 
+import { createFromIconfontCN } from '@ant-design/icons'
 
-import { test } from '../../request'
-export default function index() {
-  test()
+
+import Header from '../components/Header'
+
+
+export default function Index() {
+  const IconFont = createFromIconfontCN({
+    scriptUrl: window.config.iconfontCN,
+  });
   return (
     <div>
-      我是主页
+      <Header />
     </div>
   )
 }
