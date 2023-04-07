@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Layout, Space, Button, Checkbox, Form, Input } from 'antd';
 
@@ -7,11 +7,14 @@ import moduleCss from './index.module.scss'
 
 import { login } from '../../request/index'
 
+import { front_login } from '../../utils';
+
 const { Header, Footer, Sider, Content } = Layout
 
 
 
 export default function Index() {
+    let [searchParams, setSearchParams] = useSearchParams();
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const onFinish = async (values) => {
@@ -20,8 +23,11 @@ export default function Index() {
             const { email, password } = values
             const { data, code } = await login({ email, password })
             if (code === '0000') {
-                localStorage.setItem('token', data.token)
-                navigate('/mytodolist', { replace: true })
+                if (searchParams.has('redirect')) {
+                    front_login(data.token, searchParams.get('redirect'))
+                } else {
+                    front_login(data.token)
+                }
             }
         } catch (error) {
             console.log(error);

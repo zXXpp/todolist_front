@@ -21,7 +21,7 @@ service.interceptors.request.use(
         if (config.method === 'get') {
             config.params = config.data
         }
-        if (token) {
+        if (token && !config.noToken) {
             config.headers.Authorization = token
         }
         return config
@@ -42,8 +42,7 @@ service.interceptors.response.use(
             //失败的操作
             switch (response.data.code) {
                 case "401":
-                    console.log('未登录')
-                    // window.location='/login'
+                    reLogin()
                     break
                 default:
                     message.open({
@@ -71,5 +70,12 @@ function showError(msg) {
             content: msg,
         })
     }
+}
+
+function reLogin() {
+    if (window.location.pathname === '/login') return
+    // return
+    localStorage.clear()
+    window.location.replace(`/login?redirect=${encodeURIComponent(window.location.href)}`)
 }
 export default service

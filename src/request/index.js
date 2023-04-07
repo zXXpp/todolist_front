@@ -1,30 +1,42 @@
 import http from './http'
 /**
- * 
- * @param {*} data 数据体
- * @param {*} utils 额外参数
+ * 注册接口
+ * @param {*} data 
+ * @param {*} utils 
  * @returns 
  */
-export function register(data = {}, utils = {}){
+export function register(data = {}, utils = {}) {
     return http({
         url: '/user/register',
         method: 'post',
         data,
+        noToken: true,
         ...utils,
     })
 }
-
-export function login(data = {}, utils = {}){
+/**
+ * 登陆接口
+ * @param {*} data 
+ * @param {*} utils 
+ * @returns 
+ */
+export function login(data = {}, utils = {}) {
     return http({
         url: '/user/login',
         method: 'post',
         data,
+        noToken: true,
         ...utils,
     })
 }
 
-
-export function test(data = {}, utils = {}){
+/**
+ * 后端测试接口
+ * @param {*} data 
+ * @param {*} utils 
+ * @returns 
+ */
+export function test(data = {}, utils = {}) {
     return http({
         url: '/test',
         method: 'get',
