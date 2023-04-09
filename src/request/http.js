@@ -58,17 +58,22 @@ service.interceptors.response.use(
         }
     },
     error => {
-        showError(error.response.data.msg)
+        showError(error.response)
         return Promise.reject(error.response)
     }
 )
 
 
-function showError(msg) {
-    if (msg) {
+function showError(res) {
+    if (res && res.data && res.data.msg) {
         message.open({
             type: 'error',
-            content: msg,
+            content: res.data.msg,
+        })
+    } else {
+        message.open({
+            type: 'error',
+            content: '网络错误，请联系管理员',
         })
     }
 }

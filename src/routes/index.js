@@ -1,9 +1,12 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate,lazy } from 'react-router-dom'
+// import {lazy}
 
 import Login from "../views/Login"
 import Register from '../views/Register'
 import Mytodolist from '../views/Mytodolist'
 
+
+console.log(import('../views/Register'));
 
 
 
@@ -19,10 +22,10 @@ export default [
     },
     {
         path: '/register',
-        element: <Register />
+        element: <Register />,
     },
     {
         path: '/mytodolist',
-        element: <Mytodolist />
+        element: <Mytodolist />,
     }
 ]

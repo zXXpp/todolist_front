@@ -1,4 +1,9 @@
 import { getUserInfo } from '../request/index'
+/**
+ * 登录函数
+ * @param {String} token 登录的token
+ * @param {String} url 登陆到的目标地址 默认参数是到'/mytodolist'
+ */
 export async function front_login(token, url = '/mytodolist') {
     try {
         localStorage.setItem('token', token)
@@ -9,8 +14,17 @@ export async function front_login(token, url = '/mytodolist') {
             localStorage.setItem('userInfo', JSON.stringify(data))
         }
     } catch (error) {
-        window.location.replace('./login')
+        window.location.replace('/login')
     } finally {
         window.location.replace(url)
     }
+}
+
+/**
+ * 退出登录的函数
+ */
+export function front_loginOut() {
+    localStorage.clear()
+    sessionStorage.clear()
+    window.location.replace('/login')
 }

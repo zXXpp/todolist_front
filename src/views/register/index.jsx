@@ -92,12 +92,15 @@ export default function Index() {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 8, span: 10 }}>
-            <Button type="primary" htmlType="submit" loading={loading}>
-              注册
-            </Button>
-            <span className='extend' onClick={() => navigate('/login', { replace: true })}>返回登陆
-            </span>
+          <Form.Item wrapperCol={{ offset: 8, span: 10 }} >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Button type="primary" htmlType="submit" loading={loading}>
+                注册
+              </Button>
+              <span className='extend' onClick={() => navigate('/login', { replace: true })}>返回登陆
+              </span>
+            </div>
+
           </Form.Item>
         </Form>
       </div>

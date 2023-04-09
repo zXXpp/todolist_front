@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { NavLink, useRoutes } from 'react-router-dom'
+import React, { Fragment, Suspense } from 'react'
+import { useRoutes } from 'react-router-dom'
 import routes from './routes/index.js'
 
 
@@ -12,7 +12,9 @@ export default function App() {
   return (
     <Fragment>
       {/* 注册路由 */}
-      {elements}
+      <Suspense>
+        {elements}
+      </Suspense>
     </Fragment>
   )
 }
