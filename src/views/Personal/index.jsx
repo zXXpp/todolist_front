@@ -1,19 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { Form, Input, Button, Upload, Radio } from 'antd'
+import { Form, Input, Button, Upload, Radio, message } from 'antd'
 import { EditOutlined, PlusOutlined, ManOutlined, WomanOutlined } from '@ant-design/icons'
 
 
 import Pic from '../components/Pic'
 import moduleCss from './index.module.scss'
 
+import { getUserInfo, updateUserInfo } from '../../request/index'
+
 export default function Index() {
+  const [form] = Form.useForm()
+  const [loading, setLoading] = useState(false)
   const [editState, setEditState] = useState(false)
   const [col, setCol] = useState({
     labelCol: 6,
     wrapperCol: 10
   })
-
   const [info, setInfo] = useState({
     picUrl: '',
     nickName: '',
@@ -21,8 +24,37 @@ export default function Index() {
     email: '',
     phoneNumber: ''
   })
+  useEffect(() => {
+    getInfo()
+    return () => {
+    }
+  }, [])
+
+
+  const getInfo = async () => {
+    try {
+      const { code, data } = await getUserInfo()
+      if (code === '0000') {
+        data.sex = data.sex + ''
+        form.setFieldsValue(data)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const onFinish = async (values) => {
-    return
+    try {
+      setLoading(true)
+      const { code, data } = await updateUserInfo(values)
+      if (code === '0000') {
+        reset()
+        message.success('保存成功')
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false)
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -32,11 +64,18 @@ export default function Index() {
     console.log(file);
     return false
   }
+  const reset = () => {
+    setEditState(false);
+    form.resetFields();
+    getInfo()
+  }
+
   return (
     <div className={moduleCss.personal}>
       <div className='show'>
         <div className='title'>个人中心{editState ? '' : (<EditOutlined onClick={() => setEditState(true)} title='编辑' className='edit' />)}</div>
         <Form
+          form={form}
           name="up"
           className='info'
           labelCol={{ span: col.labelCol }}
@@ -80,7 +119,7 @@ export default function Index() {
             name="nickName"
             rules={[{ required: true, min: 1, max: 15, message: '昵称长度在1-15个字符' }]}
           >
-            <Input />
+            <Input placeholder='请输入昵称' />
           </Form.Item>
           <Form.Item
             label="性别"
@@ -96,20 +135,22 @@ export default function Index() {
             name="email"
             rules={[{ required: true, type: 'email', message: '请输入邮箱！' }]}
           >
-            <Input />
+            <Input placeholder='请输入邮箱' />
           </Form.Item>
           <Form.Item
             label="电话号码"
             name="phoneNumber"
+            validateTrigger={['onBlur']}
+            rules={[{ type: 'string', validateTrigger: 'onBlur', len: 11, message: '请输入合法电话号码！' }]}
           >
-            <Input />
+            <Input placeholder='请输入手机号' />
           </Form.Item>
           {
             editState ? (<Form.Item wrapperCol={{ offset: col.labelCol, span: col.wrapperCol }} >
-              <Button type="primary" htmlType='submit' style={{ marginRight: '30px' }}>
+              <Button type="primary" htmlType='submit' style={{ marginRight: '30px' }} loading={loading}>
                 保存
               </Button>
-              <Button type="primary" danger ghost onClick={() => setEditState(false)}>
+              <Button type="primary" danger ghost onClick={reset}>
                 放弃
               </Button>
             </Form.Item>) : ''

@@ -38,8 +38,9 @@ export function login(data = {}, utils = {}) {
     })
 }
 
+
 /**
- * 后端测试接口
+ * 获取用户信息
  * @param {*} data 
  * @param {*} utils 
  * @returns 
@@ -48,6 +49,20 @@ export function getUserInfo(data = {}, utils = {}) {
     return http({
         url: '/info/getUserInfo',
         method: 'get',
+        data,
+        ...utils,
+    })
+}
+/**
+ * 更新用户信息
+ * @param {*} data 
+ * @param {*} utils 
+ * @returns 
+ */
+export function updateUserInfo(data = {}, utils = {}) {
+    return http({
+        url: '/info/updateUserInfo',
+        method: 'post',
         data,
         ...utils,
     })
