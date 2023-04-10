@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate } from 'react-router'
+import { Outlet } from 'react-router-dom'
 
 
+import moduleCss from './index.module.scss'
 
 import Header from '../components/Header'
 
 
 export default function Index() {
-
   return (
-    <div>
+    <div >
       <Header />
+      <div className='content'>
+        <Outlet />
+      </div>
     </div>
   )
 }

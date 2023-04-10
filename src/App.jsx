@@ -12,7 +12,7 @@ export default function App() {
   return (
     <Fragment>
       {/* 注册路由 */}
-      <Suspense>
+      <Suspense fallback={<div>加载中...</div>}>
         {elements}
       </Suspense>
     </Fragment>

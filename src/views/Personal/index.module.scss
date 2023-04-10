@@ -1,0 +1,24 @@
+.personal {
+    margin: 20px 0 30px 0;
+    display: flex;
+    justify-content: center;
+    :global {
+        .show {
+            width: 50%;
+            .title {
+                height: 50px;
+                line-height: 50px;
+                font-size: 30px;
+                color: pink;
+                border-bottom: 3px dotted rgb(150, 150, 100);
+                .edit{
+                    cursor: pointer;
+                    margin-left: 10px;
+                }
+            }
+            .info{
+                margin-top: 20px;
+            }
+        }
+    }
+}

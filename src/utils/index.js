@@ -2,9 +2,9 @@ import { getUserInfo } from '../request/index'
 /**
  * 登录函数
  * @param {String} token 登录的token
- * @param {String} url 登陆到的目标地址 默认参数是到'/mytodolist'
+ * @param {String} url 登陆到的目标地址 默认参数是到'/home'
  */
-export async function front_login(token, url = '/mytodolist') {
+export async function front_login(token, url = '/home') {
     try {
         localStorage.setItem('token', token)
         localStorage.removeItem('userInfo')

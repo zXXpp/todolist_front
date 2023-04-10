@@ -1,6 +1,6 @@
 //react相关
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 //antd相关
 import { Popover, Dropdown } from 'antd';
 import { createFromIconfontCN } from '@ant-design/icons'
@@ -24,7 +24,12 @@ export default function Header() {
     {
       key: '1',
       label: (
-        <div onClick={() => navigate('/myinfo')}>个人中心</div>
+        <NavLink to={'personal'}>
+          <div>个人中心 {userInfo.nickName}</div>
+        </NavLink>
+        // <div onClick={() => navigate('personalCenter')}>
+        //   <div>个人中心 {userInfo.nickName}</div>
+        // </div>
       ),
     },
     {
@@ -37,6 +42,8 @@ export default function Header() {
   //钩子函数
   useEffect(() => {
     // test()
+    console.log('header渲染了');
+
     if (localStorage.getItem('userInfo')) {
       setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
     }
@@ -48,7 +55,9 @@ export default function Header() {
   return (
     <div className={moduleCss.header}>
       <div className='left'>
-        todo-list
+        <NavLink to={''}>
+          todo-list
+        </NavLink>
       </div>
       <div className='right'>
         <Dropdown menu={{ items }} arrow={{ pointAtCenter: true }}>

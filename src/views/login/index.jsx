@@ -43,17 +43,16 @@ export default function Index() {
             <div className='form'>
                 <div className='title'>登录</div>
                 <Form
-                    name="basic"
+                    name="login"
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 10 }}
                     style={{ maxWidth: 600 }}
-                    initialValues={{ remember: true }}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
                     <Form.Item
-                        label="email"
+                        label="E-mail"
                         name="email"
                         rules={[{ required: true, type: 'email', message: '请输入你的邮箱' }]}
                     >
