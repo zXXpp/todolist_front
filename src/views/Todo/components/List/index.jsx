@@ -3,8 +3,8 @@ import moduleCss from './index.module.scss'
 
 export default function Index() {
   return (
-    <div className={moduleCss.todo}>
-      
+    <div className={moduleCss.list}>
+      hahah
     </div>
   )
 }

@@ -7,7 +7,7 @@ import Login from "../views/Login"
 const Register = lazy(() => import('../views/Register'))
 const Home = lazy(() => import('../views/Home'))
 const Personal = lazy(() => import('../views/Personal'))
-const Todolist = lazy(() => import('../views/Todolist'))
+const Todo = lazy(() => import('../views/Todo'))
 
 
 
@@ -31,11 +31,11 @@ export default [
         children: [
             {
                 path: '',
-                element: <Navigate to="todolist" />,
+                element: <Navigate to="todo" />,
             },
             {
-                path: 'todolist',
-                element: <Todolist />
+                path: 'todo',
+                element: <Todo />
             },
             {
                 path: 'personal',

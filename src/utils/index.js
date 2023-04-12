@@ -28,3 +28,11 @@ export function front_loginOut() {
     sessionStorage.clear()
     window.location.replace('/login')
 }
+
+export function showCNweek(weekday) {
+    console.log(typeof weekday);
+    weekday = weekday * 1
+    if (weekday < 0 || weekday > 7 || typeof weekday !== 'number') return
+    const week = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日',]
+    return week[weekday]
+}

@@ -1,0 +1,16 @@
+.todo {
+    padding: 20px 0 50px 0;
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 60px);
+    overflow: auto;
+    background-color: rgb(197, 175, 179);
+    :global {
+        .content {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            height: 100%;
+        }
+    }
+}

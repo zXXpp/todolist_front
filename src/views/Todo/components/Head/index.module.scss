@@ -1,0 +1,12 @@
+.head{
+    :global{
+        .top{
+            display: flex;
+            justify-content: space-between;
+            .title{
+                font-size: 30px;
+            }
+        }
+        
+    }
+}
