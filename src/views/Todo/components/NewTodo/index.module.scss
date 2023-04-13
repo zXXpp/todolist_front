@@ -1,18 +1,32 @@
-.newtodo{
+.newtodo {
     width: 100%;
-    background-color: #fff;
-    height: 40px;
+    background-color: #efefef;
     display: flex;
     align-items: center;
-    padding: 0 20px;
     border-radius: 5px;
-    :global{
-        .left{
+    overflow: hidden;
+    :global {
+        div {
+            height: 100%;
+        }
+        .left {
             flex: 1;
+            display: flex;
+            .btn {
+                padding: 10px;
+            }
+            .input {
+                flex: 1;
+            }
         }
-        .right{
-
+        .right {
         }
 
+
+        .show-btn{
+            &:hover{
+                background-color: #fff ;
+            }
+        }
     }
 }
