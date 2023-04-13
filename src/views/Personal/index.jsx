@@ -4,10 +4,10 @@ import { Form, Input, Button, Upload, Radio, message } from 'antd'
 import { EditOutlined, PlusOutlined, ManOutlined, WomanOutlined } from '@ant-design/icons'
 
 
-import Pic from '../components/Pic'
+import Pic from '@components/Pic'
 import moduleCss from './index.module.scss'
 
-import { getUserInfo, updateUserInfo } from '../../request/index'
+import { getUserInfo, updateUserInfo } from '@api'
 
 export default function Index() {
   const [form] = Form.useForm()

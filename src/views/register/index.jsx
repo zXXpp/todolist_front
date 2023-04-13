@@ -4,7 +4,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { Layout, Space, Button, Checkbox, Form, Input, message } from 'antd';
 
 import moduleCss from './index.module.scss'
-import { register } from '../../request/index'
+import { register } from '@api'
 
 const { Header, Footer, Sider, Content } = Layout
 
