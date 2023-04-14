@@ -5,6 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 
 import moduleCss from './index.module.scss'
 import Icon from '@components/Icon'
+import { createTodo } from '@api'
 
 
 
@@ -18,10 +19,20 @@ export default function Index() {
     objTime: ''
   })
 
-  const submit = (e) => {
-    const { current: { input: { value } } } = inputRef
-    if (!value) return
-    console.log(value);
+  const submit = async (e) => {
+    try {
+      const { current: { input: { value } } } = inputRef
+      if (!value) return
+      await createTodo({
+        content: value
+      })
+      inputRef.current.input.value = ''
+    } catch (error) {
+
+    } finally {
+
+    }
+
   }
   const handlBlur = () => {
     const { current: { input: { value } } } = inputRef

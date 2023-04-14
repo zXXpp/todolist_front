@@ -1,0 +1,77 @@
+image: node:alpine
+
+stages:
+  - install
+  - build
+  - deploy
+
+cache:
+  key: hello-cicd-cache
+  paths: 
+    - node_modules
+
+
+job_install:
+  stage: install
+  tags:
+    - testcicd
+  script:
+    - npm install
+
+
+job_build:
+  stage: build
+  tags:
+  - testcicd
+  script:
+    - npm run build
+
+
+job_deploy:
+  stage: deploy
+  image: docker
+  tags:
+    - testcicd
+  script:
+    - docker build -t todolist .
+    - if [ $(docker ps -aq --filter name=todolist-react) ]; then docker rm -f todolist-react;fi
+    - docker run -d -p 2002:80 --name todolist-react todolist
+
+# image: node:alpine
+
+# stages:
+#   - install
+#   - build
+#   - deploy
+
+# cache:
+#   key: hello-cicd-cache
+#   paths: 
+#     - node_modules
+
+
+# job_install:
+#   stage: install
+#   tags:
+#     - testcicd
+#   script:
+#     - npm install
+
+
+# job_build:
+#   stage: build
+#   tags:
+#   - testcicd
+#   script:
+#     - npm run build
+#   only: 
+#     - release
+
+
+# job_deploy:
+#   stage: deploy
+#   tags:
+#     - testcicd
+#   script:
+#     - echo 'start deploy'
+#   when: manual

@@ -67,3 +67,31 @@ export function updateUserInfo(data = {}, utils = {}) {
         ...utils,
     })
 }
+/**
+ * 创建todo
+ * @param {*} data 
+ * @param {*} utils 
+ * @returns 
+ */
+export function createTodo(data = {}, utils = {}) {
+    return http({
+        url: '/todo/createTodo',
+        method: 'post',
+        data,
+        ...utils,
+    })
+}
+/**
+ * 分页获取我的todo列表
+ * @param {*} data 
+ * @param {*} utils 
+ * @returns 
+ */
+export function getTodoList(data = {}, utils = {}) {
+    return http({
+        url: '/todo/getTodoList',
+        method: 'post',
+        data,
+        ...utils,
+    })
+}
