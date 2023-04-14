@@ -6,7 +6,7 @@ stages:
   - deploy
 
 cache:
-  key: hello-cicd-cache
+  key: todo-cache
   paths: 
     - node_modules
 
@@ -45,7 +45,7 @@ job_deploy:
 #   - deploy
 
 # cache:
-#   key: hello-cicd-cache
+#   key: todo-cache
 #   paths: 
 #     - node_modules
 
