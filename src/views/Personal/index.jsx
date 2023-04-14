@@ -24,6 +24,7 @@ export default function Index() {
     email: '',
     phoneNumber: ''
   })
+  
   useEffect(() => {
     getInfo()
     return () => {

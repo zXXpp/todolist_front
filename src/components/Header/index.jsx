@@ -1,8 +1,7 @@
-//react相关
 import React, { useEffect, useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom';
 //antd相关
-import { Popover, Dropdown } from 'antd';
+import { Dropdown } from 'antd';
 import Icon from '../Icon'
 
 //组件相关
