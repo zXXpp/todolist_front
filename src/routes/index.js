@@ -2,7 +2,7 @@
 import { Navigate } from 'react-router-dom'
 import { lazy } from 'react'
 
-const Login = lazy(() => import('@views/Login'))
+import Login from "@views/Login"
 //懒加载
 const Register = lazy(() => import('@views/Register'))
 const Home = lazy(() => import('@views/Home'))
