@@ -1,4 +1,5 @@
 const path = require('path')
+console.log('craco配置生效');
 module.exports = {
   webpack: {
     alias: {
