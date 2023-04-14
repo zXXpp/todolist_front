@@ -4,10 +4,10 @@ import { lazy } from 'react'
 
 import Login from "@views/Login/index.jsx"
 //懒加载
-const Register = lazy(() => import('@views/Register'))
-const Home = lazy(() => import('@views/Home'))
-const Personal = lazy(() => import('@views/Personal'))
-const Todo = lazy(() => import('@views/Todo'))
+const Register = lazy(() => import('@views/Register/index.jsx'))
+const Home = lazy(() => import('@views/Home/index.jsx'))
+const Personal = lazy(() => import('@views/Personal/index.jsx'))
+const Todo = lazy(() => import('@views/Todo/index.jsx'))
 
 
 
