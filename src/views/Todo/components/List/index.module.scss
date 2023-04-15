@@ -1,9 +1,25 @@
 .list{
     width: 100%;
     flex:1;
-    background-color: rgb(205, 220, 122);
     margin: 10px 0;
+    padding: 5px 0;
     :global{
-        
+        .list-item{
+            margin: 3px 0;
+            display: flex;
+            background-color: #fff;
+            border-radius: 5px;
+            .contrl{
+                margin: 5px;
+            }
+            .todo-content{
+                flex:1;
+            }
+            .mark{
+                
+            }
+
+
+        }
     }
 }
