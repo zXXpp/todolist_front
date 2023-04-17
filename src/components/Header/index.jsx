@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom';
+import { observer } from 'mobx-react-lite'
+
+import userInfo from '@/store/userInfo'
 //antd相关
 import { Dropdown } from 'antd';
 import Icon from '../Icon'
@@ -12,9 +15,7 @@ import { front_loginOut } from '@utils'
 
 
 
-export default function Header() {
-  const navigate = useNavigate()
-  const [userInfo, setUserInfo] = useState({})
+export default observer(function Header() {
 
 
   const items = [
@@ -42,7 +43,8 @@ export default function Header() {
     console.log('header渲染了');
 
     if (localStorage.getItem('userInfo')) {
-      setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
+      userInfo.setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
+      // setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
     }
     //return的代码等于卸载钩子
     return () => {
@@ -64,4 +66,4 @@ export default function Header() {
       </div>
     </div>
   )
-}
+})

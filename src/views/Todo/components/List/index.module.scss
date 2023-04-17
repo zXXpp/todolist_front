@@ -3,6 +3,7 @@
     flex:1;
     margin: 10px 0;
     padding: 5px 0;
+    overflow-y: auto;
     :global{
         .list-item{
             margin: 3px 0;

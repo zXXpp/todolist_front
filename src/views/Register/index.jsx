@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import { Layout, Space, Button, Checkbox, Form, Input, message } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 
 import moduleCss from './index.module.scss'
 import { register } from '@api'
 
-const { Header, Footer, Sider, Content } = Layout
+
 
 
 export default function Index() {
@@ -17,7 +17,7 @@ export default function Index() {
     setLoading(true)
     try {
       const { email, nickName, password } = values
-      const { code, data } = await register({
+      const { code } = await register({
         email, nickName, password
       })
       if (code === '0000') {

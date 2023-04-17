@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 
-import { Input } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Input } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 
 import moduleCss from './index.module.scss'
 import Icon from '@components/Icon'
@@ -9,24 +9,21 @@ import { createTodo } from '@api'
 
 
 
-export default function Index() {
+export default function Index(props) {
   const inputRef = useRef(null)
+  const [inputValue, setInputValue] = useState('')
   const [state, setState] = useState({
     btnMode: false
-  })
-  const [todo, setTodo] = useState({
-    content: '',
-    objTime: ''
   })
 
   const submit = async (e) => {
     try {
-      const { current: { input: { value } } } = inputRef
-      if (!value) return
+      if (!inputValue) return
       await createTodo({
-        content: value
+        content: inputValue
       })
-      inputRef.current.input.value = ''
+      setInputValue('')
+      props.refresh()
     } catch (error) {
 
     } finally {
@@ -35,8 +32,7 @@ export default function Index() {
 
   }
   const handlBlur = () => {
-    const { current: { input: { value } } } = inputRef
-    if (!value) setState({ btnMode: false })
+    if (!inputValue) setState({ btnMode: false })
   }
   return (
     <div className={moduleCss.newtodo} >
@@ -50,6 +46,8 @@ export default function Index() {
             onFocus={() => setState({ btnMode: true })}
             onBlur={handlBlur}
             bordered={false}
+            value={inputValue}
+            onChange={e => setInputValue(e.target.value)}
             style={{
               height: '100%',
               padding: '4px 0'

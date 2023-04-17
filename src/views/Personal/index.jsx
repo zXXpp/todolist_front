@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Input, Button, Upload, Radio, message } from 'antd'
 import { EditOutlined, PlusOutlined, ManOutlined, WomanOutlined } from '@ant-design/icons'
 
+import userInfo from '@/store/userInfo'
 
 import Pic from '@components/Pic'
 import moduleCss from './index.module.scss'
@@ -13,22 +14,23 @@ export default function Index() {
   const [form] = Form.useForm()
   const [loading, setLoading] = useState(false)
   const [editState, setEditState] = useState(false)
-  const [col, setCol] = useState({
+  const [col] = useState({
     labelCol: 6,
     wrapperCol: 10
   })
-  const [info, setInfo] = useState({
+  const [info] = useState({
     picUrl: '',
     nickName: '',
     sex: '',
     email: '',
     phoneNumber: ''
   })
-  
+
   useEffect(() => {
     getInfo()
     return () => {
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -36,6 +38,8 @@ export default function Index() {
     try {
       const { code, data } = await getUserInfo()
       if (code === '0000') {
+        userInfo.setUserInfo(data)
+        localStorage.setItem('userInfo', JSON.stringify(data))
         data.sex = data.sex + ''
         form.setFieldsValue(data)
       }
@@ -46,7 +50,7 @@ export default function Index() {
   const onFinish = async (values) => {
     try {
       setLoading(true)
-      const { code, data } = await updateUserInfo(values)
+      const { code } = await updateUserInfo(values)
       if (code === '0000') {
         reset()
         message.success('保存成功')

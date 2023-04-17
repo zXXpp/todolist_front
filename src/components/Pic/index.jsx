@@ -1,5 +1,4 @@
 import React from 'react'
-import { createFromIconfontCN } from '@ant-design/icons'
 import Icon from '../Icon'
 
 export default function Index(props) {

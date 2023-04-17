@@ -1,7 +1,7 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
-import { Layout, Space, Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 
 import moduleCss from './index.module.scss'
 
@@ -9,12 +9,11 @@ import { login } from '@api'
 
 import { front_login } from '@utils';
 
-const { Header, Footer, Sider, Content } = Layout
 
 
 
 export default function Index() {
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const onFinish = async (values) => {
