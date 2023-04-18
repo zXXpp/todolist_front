@@ -16,7 +16,7 @@ export default forwardRef(function Index(props, ref) {
     () => ({ getList })
   );
   useEffect(() => {
-    // getList()
+    getList()
     return () => {
 
     }
