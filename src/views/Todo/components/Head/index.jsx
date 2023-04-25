@@ -15,7 +15,7 @@ export default function Index() {
     <div className={moduleCss.head}>
       <div className='top'>
         <div className='title'>我的一天</div>
-        <div>...</div>
+        <div></div>
       </div>
       <div>
         {dayjs().format('YYYY年M月D日')}，{

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
-
-import { Input } from 'antd'
+import dayjs from 'dayjs'
+import { Input, DatePicker } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
 import moduleCss from './index.module.scss'
@@ -12,6 +12,7 @@ import { createTodo } from '@api'
 export default function Index(props) {
   const inputRef = useRef(null)
   const [inputValue, setInputValue] = useState('')
+  const [dateValue, setDateValue] = useState('')
   const [state, setState] = useState({
     btnMode: false
   })
@@ -20,9 +21,11 @@ export default function Index(props) {
     try {
       if (!inputValue) return
       await createTodo({
-        content: inputValue
+        content: inputValue,
+        objectTime: dateValue?.format('YYYY-MM-DD')
       })
       setInputValue('')
+      setDateValue('')
       props.refresh()
     } catch (error) {
 
@@ -59,7 +62,7 @@ export default function Index(props) {
         </div>
       </div>
       <div className='right'>
-        配置器
+        <DatePicker bordered={false} value={dateValue} onChange={(day) => setDateValue(day)} />
       </div>
     </div>
   )

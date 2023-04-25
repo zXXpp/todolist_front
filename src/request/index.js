@@ -95,3 +95,17 @@ export function getTodoList(data = {}, utils = {}) {
         ...utils,
     })
 }
+/**
+ * 更新todo
+ * @param {*} data 
+ * @param {*} utils 
+ * @returns 
+ */
+export function updateTodo(data = {}, utils = {}) {
+    return http({
+        url: '/todo/updateTodo',
+        method: 'post',
+        data,
+        ...utils,
+    })
+}

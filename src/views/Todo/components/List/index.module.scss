@@ -7,14 +7,26 @@
     :global{
         .list-item{
             margin: 3px 0;
+            padding: 5px 10px;
             display: flex;
-            background-color: #fff;
+            background-color: #ece9e9;
             border-radius: 5px;
+            &:hover{
+                background-color: #fff;
+            }
             .contrl{
-                margin: 5px;
+                margin-right: 5px;
             }
             .todo-content{
                 flex:1;
+                .text-content{
+                  
+                }
+                .todo-info{
+                    margin-top: 5px;
+                    font-size: 14px;
+                    color:#6b6a6a
+                }
             }
             .mark{
                 
