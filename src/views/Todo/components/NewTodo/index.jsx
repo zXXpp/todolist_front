@@ -22,13 +22,13 @@ export default function Index(props) {
       if (!inputValue) return
       await createTodo({
         content: inputValue,
-        objectTime: dateValue?.format('YYYY-MM-DD')
+        objectTime: dateValue ? dateValue.format('YYYY-MM-DD') : undefined
       })
       setInputValue('')
       setDateValue('')
       props.refresh()
     } catch (error) {
-
+      console.log(error);
     } finally {
 
     }
